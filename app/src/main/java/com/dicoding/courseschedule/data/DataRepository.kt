@@ -31,7 +31,7 @@ class DataRepository(private val dao: CourseDao) {
     }
 
     fun getTodaySchedule(): List<Course> {
-        return dao.getTodaySchedule(1)
+        return dao.getTodaySchedule(4)
     }
 
     fun insert(course: Course) = executeThread {

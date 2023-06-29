@@ -2,7 +2,6 @@ package com.dicoding.courseschedule.ui.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -24,7 +23,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var viewModel: HomeViewModel
     private var queryType = QueryType.CURRENT_DAY
 
-    //TODO 5 : Show today schedule in CardHomeView and implement menu action
+    //TODO 5 : Show today schedule in CardHomeView and implement menu action OK
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -32,8 +31,7 @@ class HomeActivity : AppCompatActivity() {
         val factory = HomeViewModelFactory.createFactory(this)
         viewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
 
-        Log.d("Test", viewModel.getTodaySchedule().toString())
-        showTodaySchedule(viewModel.getTodaySchedule())
+        viewModel.courses.observe(this, Observer(::showTodaySchedule))
     }
 
     private fun showTodaySchedule(course: Course?) {
