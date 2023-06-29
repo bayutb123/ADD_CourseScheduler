@@ -8,7 +8,6 @@ import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -39,13 +38,13 @@ class ListActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val factory = ListViewModelFactory.createFactory(this)
-        viewModel = ViewModelProvider(this, factory).get(ListViewModel::class.java)
-
+        viewModel = ViewModelProvider(this, factory)[ListViewModel::class.java]
 
         setFabClick()
         setUpRecycler()
         initAction()
         updateList()
+
     }
 
     private fun setUpRecycler() {
@@ -58,6 +57,7 @@ class ListActivity : AppCompatActivity() {
         //TODO 8 : Intent and show detailed course OK
         Intent(this@ListActivity, DetailActivity::class.java).also {
             it.putExtra(COURSE_ID, course.id)
+            startActivity(it)
         }
     }
 
@@ -90,7 +90,6 @@ class ListActivity : AppCompatActivity() {
         val view = findViewById<View>(R.id.action_sort) ?: return
         PopupMenu(this, view).run {
             menuInflater.inflate(R.menu.sort_course, menu)
-
             setOnMenuItemClickListener {
                 viewModel.sort(
                     when (it.itemId) {
@@ -113,6 +112,7 @@ class ListActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_sort -> {
+                showSortMenu()
                 true
             }
 
