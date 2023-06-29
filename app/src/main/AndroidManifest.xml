@@ -17,6 +17,7 @@
             android:name=".ui.add.AddCourseActivity"
             android:label="@string/add_course"
             android:theme="@style/Theme.CourseSchedule.NoActionBar"
+            android:parentActivityName=".ui.list.ListActivity"
             />
         <activity
             android:name=".ui.detail.DetailActivity"

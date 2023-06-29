@@ -1,20 +1,15 @@
 package com.dicoding.courseschedule.ui.add
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageButton
 import android.widget.Spinner
 import android.widget.TextView
-import androidx.core.view.get
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.dicoding.courseschedule.R
-import com.dicoding.courseschedule.data.Course
-import com.dicoding.courseschedule.util.DayName
 import com.dicoding.courseschedule.util.TimePickerFragment
-import kotlin.time.Duration.Companion.days
 
 class AddCourseActivity : AppCompatActivity(), TimePickerFragment.DialogTimeListener {
     private lateinit var viewModel: AddCourseViewModel
@@ -49,7 +44,7 @@ class AddCourseActivity : AppCompatActivity(), TimePickerFragment.DialogTimeList
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
+        when (item.itemId) {
             R.id.action_insert -> {
                 val name = findViewById<TextView>(R.id.ed_course_name).text.toString()
                 val day = findViewById<Spinner>(R.id.spinner_day).selectedItemId
@@ -60,14 +55,9 @@ class AddCourseActivity : AppCompatActivity(), TimePickerFragment.DialogTimeList
 
                 viewModel.insertCourse(name, day.toInt(), startTime, endTime, lecturer, note)
                 finish()
-
-                true
-            }
-
-            else -> {
-                super.onOptionsItemSelected(item)
             }
         }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onDialogTimeSet(tag: String?, hour: Int, minute: Int) {
