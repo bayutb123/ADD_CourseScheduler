@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.dicoding.courseschedule.R
 import com.dicoding.courseschedule.data.Course
+import com.dicoding.courseschedule.ui.add.AddCourseActivity
 import com.dicoding.courseschedule.ui.list.ListActivity
 import com.dicoding.courseschedule.ui.setting.SettingsActivity
 import com.dicoding.courseschedule.util.DayName
@@ -73,6 +74,7 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val intent: Intent = when (item.itemId) {
+            R.id.action_add -> Intent(this, AddCourseActivity::class.java)
             R.id.action_list -> Intent(this, ListActivity::class.java)
             R.id.action_settings -> Intent(this, SettingsActivity::class.java)
             else -> null
