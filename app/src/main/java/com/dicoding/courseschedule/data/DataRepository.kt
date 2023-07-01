@@ -30,8 +30,8 @@ class DataRepository(private val dao: CourseDao) {
         return dao.getCourse(id)
     }
 
-    fun getTodaySchedule(): List<Course> {
-        return dao.getTodaySchedule(4)
+    fun getTodaySchedule(day: Int): List<Course> {
+        return dao.getTodaySchedule(day) //TODO: PERLU DI FIX
     }
 
     fun insert(course: Course) = executeThread {
