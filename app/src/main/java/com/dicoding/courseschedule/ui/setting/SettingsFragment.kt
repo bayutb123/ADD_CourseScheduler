@@ -5,7 +5,9 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.ListPreference
 import androidx.preference.PreferenceFragmentCompat
+import androidx.preference.SwitchPreference
 import com.dicoding.courseschedule.R
+import com.dicoding.courseschedule.notification.DailyReminder
 import com.dicoding.courseschedule.util.NightMode
 
 class SettingsFragment : PreferenceFragmentCompat() {
@@ -21,11 +23,17 @@ class SettingsFragment : PreferenceFragmentCompat() {
                 else -> NightMode.AUTO
             }
             updateTheme(nightMode.ordinal)
-            Log.d("Test", nightMode.ordinal.toString())
-            Log.d("Test", "$newValue -> ${getString(R.string.pref_dark_on)} / ${getString(R.string.pref_dark_off)}")
             true
         }
-        //TODO 11 : Schedule and cancel notification in DailyReminder based on SwitchPreference
+        //TODO 11 : Schedule and cancel notification in DailyReminder based on SwitchPreference ok
+        val switchPreference = findPreference<SwitchPreference>(getString(R.string.pref_key_notify))
+        switchPreference?.setOnPreferenceChangeListener { _, newValue ->
+            when (newValue) {
+                true -> DailyReminder().setDailyReminder(requireContext())
+                else -> DailyReminder().cancelAlarm(requireContext())
+            }
+            true
+        }
     }
 
     private fun updateTheme(nightMode: Int): Boolean {

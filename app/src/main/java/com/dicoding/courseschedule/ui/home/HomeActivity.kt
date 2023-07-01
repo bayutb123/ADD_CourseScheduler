@@ -2,6 +2,7 @@ package com.dicoding.courseschedule.ui.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -38,6 +39,7 @@ class HomeActivity : AppCompatActivity() {
     private fun showTodaySchedule(course: Course?) {
         checkQueryType(course)
         course?.apply {
+            Log.d("Test", this.toString())
             val dayName = DayName.getByNumber(day)
             val time = String.format(getString(R.string.time_format), dayName, startTime, endTime)
             val remainingTime = timeDifference(day, startTime)

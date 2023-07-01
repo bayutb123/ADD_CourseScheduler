@@ -1,10 +1,12 @@
 package com.dicoding.courseschedule.util
 
 import android.text.format.DateUtils
+import android.util.Log
 import java.util.*
 
 fun timeDifference(day: Int, targetTime: String): String {
     val splitTime = targetTime.split(":")
+    Log.d("Time", splitTime.toString())
 
     val start = Calendar.getInstance()
     start.set(Calendar.DAY_OF_WEEK, day)
