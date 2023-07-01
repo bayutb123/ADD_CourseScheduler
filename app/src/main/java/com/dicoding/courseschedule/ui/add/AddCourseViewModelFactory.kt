@@ -4,7 +4,6 @@ import android.app.Activity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.dicoding.courseschedule.data.DataRepository
-import com.dicoding.courseschedule.ui.detail.DetailViewModelFactory
 import java.lang.reflect.InvocationTargetException
 
 class AddCourseViewModelFactory(private val repository: DataRepository?) :

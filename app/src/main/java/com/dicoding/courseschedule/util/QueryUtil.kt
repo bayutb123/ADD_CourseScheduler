@@ -1,6 +1,5 @@
 package com.dicoding.courseschedule.util
 
-import android.util.Log
 import androidx.sqlite.db.SimpleSQLiteQuery
 
 object QueryUtil {
