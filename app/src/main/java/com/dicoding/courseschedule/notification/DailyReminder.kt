@@ -41,8 +41,8 @@ class DailyReminder : BroadcastReceiver() {
 
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val calendar = Calendar.getInstance().apply {
-            set(Calendar.HOUR_OF_DAY, 8)
-            set(Calendar.MINUTE, 44)
+            set(Calendar.HOUR_OF_DAY, 6)
+            set(Calendar.MINUTE, 0)
             set(Calendar.SECOND, 0)
         }
 
@@ -106,12 +106,12 @@ class DailyReminder : BroadcastReceiver() {
                 NOTIFICATION_CHANNEL_NAME,
                 NotificationManager.IMPORTANCE_DEFAULT
             ).apply {
-                description = "Channel Description" // Deskripsi opsional untuk channel notifikasi
-                enableLights(true) // Mengaktifkan lampu LED untuk notifikasi pada channel ini
-                lightColor = Color.RED // Warna lampu LED
-                enableVibration(true) // Mengaktifkan getaran untuk notifikasi pada channel ini
+                description = "Today's Course Reminder"
+                enableLights(true)
+                lightColor = Color.GREEN
+                enableVibration(true)
                 vibrationPattern =
-                    longArrayOf(100, 200, 300, 400, 500) // Pola getaran (dalam milidetik)
+                    longArrayOf(100, 200, 300, 400, 500)
             }
             notificationManager.createNotificationChannel(channel)
         }
